@@ -71,6 +71,11 @@ sources:
           - name: estimated_delivery_at
           - name: order_cost
           - name: user_id
+            tests:
+              - not null 
+              - relationships:
+                  field: user_id
+                  to: source('sql_server_dbo', 'users')
           - name: order_total
           - name: delivered_at
           - name: tracking_id
@@ -86,6 +91,10 @@ sources:
               - unique
               - not_null
           - name: product_id
+            tests:
+              - relationships:
+                  to: source('sql_server_dbo', 'products')
+                  field: product_id
           - name: quantity
           - name: _fivetran_deleted
           - name: _fivetran_synced
