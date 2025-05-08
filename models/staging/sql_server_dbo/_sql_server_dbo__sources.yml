@@ -2,9 +2,9 @@ version: 2
 
 sources:
 
-  - name: sql_server_dbo # name of the source 
-    schema: sql_server_dbo # this is the schema our raw data lives in
-    database: ALUMNO12_DEV_BRONZE_DB # this is the name of our database
+  - name: google_sheets # name of the source 
+    schema: google_sheets # this is the schema our raw data lives in
+    database: "{{ env_var('DBT_ENVIRONMENTS') }}_BRONZE_DB"  # this is the name of our database
 
     quoting:
       database: false

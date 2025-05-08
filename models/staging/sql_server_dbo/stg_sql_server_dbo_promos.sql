@@ -21,6 +21,16 @@ renamed as (
 
     select 'sin promo', 0, 'active', null, GETDATE()
 
+), final as (
+    select 
+        md5(promo_id) as promo_id,
+        promo_id as promo_name,
+        discount,
+        status,
+        _fivetran_deleted,
+        _fivetran_synced
+    from renamed
+    
 )
 
-select * from renamed
+select * from final
