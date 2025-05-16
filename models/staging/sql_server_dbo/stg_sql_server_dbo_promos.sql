@@ -23,7 +23,7 @@ renamed as (
 
 ), final as (
     select 
-        md5(promo_id) as promo_id,
+         as promo_id,
         promo_id as promo_name,
         discount,
         status,

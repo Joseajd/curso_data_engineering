@@ -11,16 +11,16 @@ renamed as (
     select
         order_id,
         CASE 
-            WHEN shipping_service = '' THEN 'Desconocido'
-            ELSE shipping_service
-            END AS shipping_service,
+            WHEN shipping_service = '' THEN 'desconocido' 
+            ELSE shipping_service 
+            END AS shipping_service_actualizada,
         shipping_cost,
         address_id,
         created_at,
         CASE 
             WHEN promo_id = '' THEN 'sin promo' 
             ELSE promo_id 
-            END AS promo_id,
+            END AS promo_id_actualizada,
         estimated_delivery_at,
         order_cost,
         user_id,
@@ -32,11 +32,14 @@ renamed as (
         _fivetran_synced
 
     from source
-), final as (
+), definitiva as (
     select
         order_id,
-        shipping_service,
-        md5(promo_id) as promo_id,
+        shipping_service_actualizada,
+        shipping_cost,
+        address_id,
+        created_at,
+        promo_id_actualizada,
         estimated_delivery_at,
         order_cost,
         user_id,
@@ -46,7 +49,8 @@ renamed as (
         status,
         _fivetran_deleted,
         _fivetran_synced
-    from renamed
+
+        from renamed
 )
 
-select * from final
+select * from definitiva
