@@ -60,6 +60,7 @@ cleaned as (
     CAST(loser_rank_points as int) as loser_rank_points
     
     from atp_all
+    where tourney_level in ('M', 'A', 'G', 'F')
 )
 
 select * from cleaned
