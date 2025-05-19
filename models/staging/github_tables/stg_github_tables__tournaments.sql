@@ -12,11 +12,11 @@ with base as (
         {{ dbt_utils.generate_surrogate_key(['tourney_name', 'tourney_start_date'])}} as tournament_id, 
         tourney_name as tournament_name,
         tourney_start_date as tournament_start_date,
-        surface as tournament_surface,
+        md5(surface) as surface_id,
         tourney_level as tournament_level,
         draw_size
     from base 
-    group by tournament_name, tournament_surface, tournament_level, tournament_start_date
+    group by tournament_name, surface_id, tournament_level, tournament_start_date, draw_size
     order by tournament_start_date
 )
 

@@ -8,7 +8,7 @@ with fecha as (
     {{ dbt_utils.date_spine(
     datepart = "day",
     start_date = "'2000-01-01'",
-    end_date = "'2023-12-31'"
+    end_date = "'2024-12-31'"
 ) }}
 ), fecha_casteada as (
     select
