@@ -1,4 +1,4 @@
-{{
+                                                                                                                                                                                                                          {{
     config(
         materialized='view'
     )
@@ -15,7 +15,7 @@ cleaned as (
     surface,
     CAST(draw_size as int) as draw_size,
     tourney_level,
-    TO_DATE(tourney_date, 'YYYYMMDD') as tourney_start_date,
+    TO_DATE(tourney_date, 'YYYYMMDD') as tourney_start_date ,
     CAST(match_num as int) as match_number,
     winner_id,
     CAST(winner_seed as int) as winner_seed,
@@ -33,7 +33,8 @@ cleaned as (
     CAST(loser_ht as int) as loser_height,
     loser_ioc,
     CAST(loser_age as int) as loser_age,
-    score,
+    regexp_replace(score, '\\(.*?\\)', '') as score,
+    CAST(minutes as int ) as minutes,
     CAST(best_of as int) as best_of,
     round,
     CAST(w_ace as int) as winner_ace,
@@ -60,7 +61,7 @@ cleaned as (
     CAST(loser_rank_points as int) as loser_rank_points
     
     from atp_all
-    where tourney_level in ('M', 'A', 'G', 'F')
+    where tourney_level in ('M', 'A', 'G', 'F') AND tourney_name not like '%Olympics%'
 )
 
 select * from cleaned
