@@ -118,13 +118,13 @@ with staging as (
         trunc(case
             when total_first_serve_in = 0 then 0
             else (total_first_serve_won/total_first_serve_in)*100 
-        end, 2)  as pct_tfsw_tfsi,
+        end, 2)  as ratio_first_serve,
         total_second_serve_won,
         total_serve_games_won,
        trunc(case
             when total_games_won = 0 then 0
             else (total_serve_games_won/total_games_won)*100 
-        end, 2) as pct_tsgw_tgw,
+        end, 2) as ratio_serve_games,
         total_break_points_faced,
         total_break_points_saved,
        trunc(case

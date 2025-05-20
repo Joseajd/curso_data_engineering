@@ -2,315 +2,315 @@ version: 2
 
 models:
   - name: stg_date
-    description: ""
+    description: "Modelo de staging que contiene las fechas de todos los días desde el 2000-01-01 hasta el 2024_12_31"
     columns:
       - name: date_id
         data_type: date
-        description: ""
+        description: "Identificador único de la fecha. Corresponde a la fecha en formato YYYY-MM-DD."
 
       - name: year
         data_type: number
-        description: ""
+        description: "Año correspondiente a la fecha."
 
       - name: quarter
         data_type: number
-        description: ""
+        description: "Trimestre del año en el que cae la fecha (valores de 1 a 4)."
 
       - name: month
         data_type: number
-        description: ""
+        description: "Mes numérico de la fecha (valores de 1 a 12)."
 
       - name: month_name
         data_type: varchar
-        description: ""
+        description: "Primeras tres letras del mes en inglés, por ejemplo, January -> Jan"
 
       - name: day
         data_type: number
-        description: ""
+        description: "Día del mes correspondiente a la fecha."
 
       - name: week_day
         data_type: varchar
-        description: ""
+        description: "Primeras tres letras del día de la semana correspondiente a la fecha en inglés, por ejemplo, Monday -> Mon"
 
   - name: stg_github_tables__countries
     description: ""
     columns:
       - name: country_id
         data_type: varchar
-        description: ""
+        description: "Identificador único del país. Generado usando md5."
 
       - name: country_name
         data_type: varchar
-        description: ""
+        description: "Nombre del país en inglés."
 
       - name: ioc
         data_type: varchar
-        description: ""
+        description: "Siglas del país en inglés, por ejemplo, ESP -> Spain"
 
   - name: stg_github_tables__entry_modes
     description: ""
     columns:
       - name: entry_mode_id
         data_type: varchar
-        description: ""
+        description: "Identificador único del modo de entrada al torneo. Generado usando md5."
 
       - name: entry_mode
         data_type: varchar
-        description: ""
+        description: "Siglas del modo de entrada al torneo."
 
       - name: entry_description
         data_type: varchar
-        description: ""
+        description: "Descripción del modo de entrada al torneo."
 
   - name: stg_github_tables__matches_stats
     description: ""
     columns:
       - name: match_id
         data_type: varchar
-        description: ""
+        description: "Identificador único para cada partido. Generado usando generate_surrogate_key usando los campos 'winner_name', 'loser_name', 'tourney_start_date', 'tourney_name', 'match_number'."
 
       - name: tournament_id
         data_type: varchar
-        description: ""
+        description: "Identificador único del torneo. Generado usando generate_surrogate_key usando los campos 'Tourney_id' y 'Tourney_start_date'."
 
       - name: date
         data_type: date
-        description: ""
+        description: "Fecha de comienzo del torneo en formato YYYY-MM-DD."
 
       - name: match_players
         data_type: varchar
-        description: ""
+        description: "Nombre de los jugadores del torneo en formato 'winner_name'-'loser_name'."
 
       - name: match_number
         data_type: number
-        description: ""
+        description: "Número del partido en el torneo."
 
       - name: winner_id
         data_type: varchar
-        description: ""
+        description: "Identificador único del jugador que ganó el partido."
 
       - name: winner_seed
         data_type: number
-        description: ""
+        description: "Cabeza de serie del jugador ganador. Si el valor es cero es que no se tiene valor del seed para ese jugador."
 
       - name: winner_entry_id
         data_type: varchar
-        description: ""
+        description: "Identificador único de la forma de entrada del jugador ganador."
 
       - name: loser_id
         data_type: varchar
-        description: ""
+        description: "Identificador único del jugador que perdió el partido."
 
       - name: loser_seed
         data_type: number
-        description: ""
+        description: "Cabeza de serie del jugador perdedor. Si el valor es cero es que no se tiene valor del seed para ese jugador."
 
       - name: loser_entry_id
         data_type: varchar
-        description: ""
+        description: "Identificador único de la forma de entrada del jugador perdedor."
 
       - name: score
         data_type: varchar
-        description: ""
+        description: "Resultado final del partido. Si aparece 'RET', 'W/O' O 'DEF' significan 'Retirado', 'Walkover (Abandono)' o 'Retirada sin especificar' respectivamente.'"
 
       - name: set_1
         data_type: varchar
-        description: ""
+        description: "Resultado del primer set. Si no se jugó el set, aparece el valor 0-0."
 
       - name: set_2
         data_type: varchar
-        description: ""
+        description: "Resultado del segundo set. Si no se jugó el set, aparece el valor 0-0."
 
       - name: set_3
         data_type: varchar
-        description: ""
+        description: "Resultado del tercer set. Si no se jugó el set, aparece el valor 0-0."
 
       - name: set_4
         data_type: varchar
-        description: ""
+        description: "Resultado del cuarto set. Si no se jugó el set, aparece el valor 0-0."
 
       - name: set_5
         data_type: varchar
-        description: ""
+        description: "Resultado del quinta set. Si no se jugó el set, aparece el valor 0-0."
 
       - name: winner_games_set_1
         data_type: number
-        description: ""
+        description: "Juegos ganados por el ganador en el primer set."
 
       - name: loser_games_set_1
         data_type: number
-        description: ""
+        description: "Juegos ganados por el perdedor en el primer set."
 
       - name: winner_games_set_2
         data_type: number
-        description: ""
+        description: "Juegos ganados por el ganador en el segundo set."
 
       - name: loser_games_set_2
         data_type: number
-        description: ""
+        description: "Juegos ganados por el perdedor en el segundo set."
 
       - name: winner_games_set_3
         data_type: number
-        description: ""
+        description: "Juegos ganados por el ganador en el tercer set."
 
       - name: loser_games_set_3
         data_type: number
-        description: ""
+        description: "Juegos ganados por el perdedor en el tercer set."
 
       - name: winner_games_set_4
         data_type: number
-        description: ""
+        description: "Juegos ganados por el ganador en el cuarto set."
 
       - name: loser_games_set_4
         data_type: number
-        description: ""
+        description: "Juegos ganados por el perdedor en el cuarto set."
 
       - name: winner_games_set_5
         data_type: number
-        description: ""
+        description: "Juegos ganados por el ganador en el quinto set."
 
       - name: loser_games_set_5
         data_type: number
-        description: ""
+        description: "Juegos ganados por el perdedor en el quinto set."
 
       - name: retirement
         data_type: varchar
-        description: ""
+        description: "Valores de True para identificar que hubo abandono o walkover, y False para decir que no lo hubo."
 
       - name: total_winner_games
         data_type: number
-        description: ""
+        description: "Juegos totales ganados por el ganador en el partido."
 
       - name: total_loser_games
         data_type: number
-        description: ""
+        description: "Juegos totales ganados por el perdedor en el partido."
 
       - name: total_match_games
         data_type: number
-        description: ""
+        description: "Juegos totales del partido."
 
       - name: minutes
         data_type: number
-        description: ""
+        description: "Duración en minutos del partido. Si no hay registro de minutos, tienen el valor 0."
 
       - name: best_of
         data_type: number
-        description: ""
+        description: "Señala al mejor de cuantos sets se decide el partido. Toma valores 3 o 5."
 
       - name: round
         data_type: varchar
-        description: ""
+        description: "Ronda del torneo en la que se encuentra el partido."
 
       - name: winner_ace
         data_type: number
-        description: ""
+        description: "Número de aces conseguidos por el ganador."
 
       - name: winner_double_faults
         data_type: number
-        description: ""
+        description: "Número de dobles faltas conseguidas por el ganador."
 
       - name: winner_serve_points
         data_type: number
-        description: ""
+        description: "Número de puntos al servicio del jugador ganador."
 
       - name: winner_first_serve_in
         data_type: number
-        description: ""
+        description: "Número de saques acertados en el primer intento de saque del jugador ganador."
 
       - name: winner_first_serve_won
         data_type: number
-        description: ""
+        description: "Número de puntos ganados por el ganador habiendo hecho un buen primer saque."
 
       - name: winner_second_serve_won
         data_type: number
-        description: ""
+        description: "Número de puntos ganados por el ganador habiendo hecho un buen segundo saque."
 
       - name: winner_serve_games_won
         data_type: number
-        description: ""
+        description: "Número de juegos ganados por el jugador ganador cuando estaba al servicio."
 
       - name: winner_break_points_saved
         data_type: number
-        description: ""
+        description: "Número de puntos de rotura de saque defendidos con éxito por el ganador."
 
       - name: winner_break_points_faced
         data_type: number
-        description: ""
+        description: "Número de puntos de rotura de saque enfrentados por el ganador."
 
       - name: loser_ace
         data_type: number
-        description: ""
+        description: "Número de aces conseguidos por el perdedor."
 
       - name: loser_double_faults
         data_type: number
-        description: ""
+        description: "Número de dobles faltas conseguidas por el perdedor."
 
       - name: loser_serve_points
         data_type: number
-        description: ""
+        description: "Número de puntos al servicio del jugador perdedor."
 
       - name: loser_first_serve_in
         data_type: number
-        description: ""
+        description: "Número de saques acertados en el primer intento de saque del jugador perdedor."
 
       - name: loser_first_serve_won
         data_type: number
-        description: ""
+        description: "Número de puntos ganados por el perdedor habiendo hecho un buen primer saque."
 
       - name: loser_second_serve_won
         data_type: number
-        description: ""
+        description: "Número de puntos ganados por el perdedor habiendo hecho un buen segundo saque."
 
       - name: loser_serve_games_won
         data_type: number
-        description: ""
+        description: "Número de juegos ganados por el jugador perdedor cuando estaba al servicio."
 
       - name: loser_break_points_saved
         data_type: number
-        description: ""
+        description: "Número de puntos de rotura de saque defendidos con éxito por el perdedor."
 
       - name: loser_break_points_faced
         data_type: number
-        description: ""
+        description: "Número de puntos de rotura de saque enfrentados por el perdedor."
 
       - name: winner_rank
         data_type: number
-        description: ""
+        description: "Ranking en el momento del partido del jugador ganador."
 
       - name: winner_rank_points
         data_type: number
-        description: ""
+        description: "Número de puntos en el ranking en el momento del partido del jugador ganador."
 
       - name: loser_rank
         data_type: number
-        description: ""
+        description: "Ranking en el momento del partido del jugador perdedor."
 
       - name: loser_rank_points
         data_type: number
-        description: ""
+        description: "Número de puntos en el ranking en el momento del partido del jugador perdedor."
 
   - name: stg_github_tables__players
     description: ""
     columns:
       - name: player_id
         data_type: varchar
-        description: ""
+        description: "Identificador único de cada jugador. Generado con generate_surrogate_key usando los campos 'Player_id' y 'Player_name'."
 
       - name: player_name
         data_type: varchar
-        description: ""
+        description: "Nombre y primer apellido del jugador."
 
       - name: player_hand
         data_type: varchar
-        description: ""
+        description: "Mano con la que juega cada jugador. 'R' significa 'Right (Derecha) y 'L' significa 'Left (Izquierda)'."
 
       - name: player_ioc
         data_type: varchar
-        description: ""
+        description: "Siglas del país de nacimiento de cada jugador."
 
       - name: player_height
         data_type: number
-        description: ""
+        description: "Altura en centímetros de cada jugador."
 
   - name: stg_github_tables__rounds
     description: ""
