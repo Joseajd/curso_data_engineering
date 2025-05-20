@@ -73,40 +73,7 @@ with base as (
         loser_seed,
         md5(loser_entry) as loser_entry_id,
         score,
-        set_1,
-        set_2,
-        set_3,
-        set_4,
-        set_5,
-        cast(
-        case 
-            when set_1 ilike '%RET%' or set_1 ilike '%W/O%' then 0
-            else split_part(set_1, '-', 1)
-        end as int
-        ) as winner_games_set_1,
-        cast(
-        case 
-            when set_1 ilike '%RET%' or set_1 ilike '%W/O%' then 0
-            else split_part(set_1, '-', 2)
-        end as int
-        ) as loser_games_set_1,
-        cast(
-        case 
-            when set_2 ilike '%RET%' or set_2 ilike '%W/O%' or set_2 ilike '' then 0
-            else split_part(set_2, '-', 1)
-        end as int
-        ) as winner_games_set_2,
-        cast(
-        case 
-            when set_2 ilike '%RET%' or set_2 ilike '%W/O%' or set_2 ilike '' then 0
-            else split_part(set_2, '-', 2)
-        end as int
-        ) as loser_games_set_2,
-        case
-            when set_1 like '%RET%' or set_2 like '%RET%' or set_3 like '%RET%' or set_4 like '%RET%' or set_5 like '%RET%' then 'True'
-            when set_1 like '%W/O%' or set_2 like '%W/O%' or set_3 like '%W/O%' or set_4 like '%W/O%' or set_5 like '%W/O%' then 'True'
-            else 'False'
-        end as Retirement,
+        {{replace_nulls2(['set_1', 'set_2', 'set_3', 'set_4', 'set_5'])}},
         minutes,
         best_of,
         round,
@@ -134,6 +101,124 @@ with base as (
         loser_rank_points
 
     from hashed
+), real_final as (
+    select 
+        match_id,
+        tournament_id,
+        date,
+        match_players,
+        match_number,
+        winner_id,
+        winner_seed,
+        winner_entry_id,
+        loser_id,
+        loser_seed,
+        loser_entry_id,
+        score,
+        set_1,
+        set_2,
+        set_3,
+        set_4,
+        set_5,
+        cast(
+        case 
+            when set_1 ilike '%RET%' or set_1 ilike '%W/O%' then 0
+            else split_part(set_1, '-', 1)
+        end as int
+        ) as winner_games_set_1,
+        cast(
+        case 
+            when set_1 ilike '%RET%' or set_1 ilike '%W/O%' then 0
+            else split_part(set_1, '-', 2)
+        end as int
+        ) as loser_games_set_1,
+        cast(
+        case 
+            when set_2 ilike '%RET%' or set_2 ilike '%W/O%' then 0
+            else split_part(set_2, '-', 1)
+        end as int
+        ) as winner_games_set_2,
+        cast(
+        case 
+            when set_2 ilike '%RET%' or set_2 ilike '%W/O%' then 0
+            else split_part(set_2, '-', 2)
+        end as int
+        ) as loser_games_set_2,
+        cast(
+        case 
+            when set_3 ilike '%RET%' or set_3 ilike '%W/O%' then 0
+            else split_part(set_3, '-', 1)
+        end as int
+        ) as winner_games_set_3,
+        cast(
+        case 
+            when set_3 ilike '%RET%' or set_3 ilike '%W/O%' then 0
+            else split_part(set_3, '-', 2)
+        end as int
+        ) as loser_games_set_3,
+        cast(
+        case 
+            when set_4 ilike '%RET%' or set_4 ilike '%W/O%' then 0
+            else split_part(set_4, '-', 1)
+        end as int
+        ) as winner_games_set_4,
+        cast(
+        case 
+            when set_4 ilike '%RET%' or set_4 ilike '%W/O%' then 0
+            else split_part(set_4, '-', 2)
+        end as int
+        ) as loser_games_set_4,
+        cast(
+        case 
+            when set_5 ilike '%RET%' or set_5 ilike '%W/O%' then 0
+            else split_part(set_5, '-', 1)
+        end as int
+        ) as winner_games_set_5,
+        cast(
+        case 
+            when set_5 ilike '%RET%' or set_5 ilike '%W/O%' then 0
+            else split_part(set_5, '-', 2)
+        end as int
+        ) as loser_games_set_5,
+        case
+            when set_1 like '%RET%' or set_2 like '%RET%' or set_3 like '%RET%' or set_4 like '%RET%' or set_5 like '%RET%' then 'True'
+            when set_1 like '%W/O%' or set_2 like '%W/O%' or set_3 like '%W/O%' or set_4 like '%W/O%' or set_5 like '%W/O%' then 'True'
+            else 'False'
+        end as Retirement,
+        winner_games_set_1+winner_games_set_2+winner_games_set_3+winner_games_set_4+winner_games_set_5+loser_games_set_1+loser_games_set_2+loser_games_set_3+loser_games_set_4+loser_games_set_5 as total_match_points,
+        minutes,
+        best_of,
+        round,
+        winner_ace,
+        winner_double_faults,
+        winner_serve_points,
+        winner_first_serve_in,
+        winner_first_serve_won,
+        winner_second_serve_won,
+        winner_serve_games_won,
+        winner_break_points_saved,
+        winner_break_points_faced,
+        loser_ace,
+        loser_double_faults,
+        loser_serve_points,
+        loser_first_serve_in,
+        loser_first_serve_won,
+        loser_second_serve_won,
+        loser_serve_games_won,
+        loser_break_points_saved,
+        loser_break_points_faced,
+        winner_rank,
+        winner_rank_points,
+        loser_rank,
+        loser_rank_points
+    from final
 )
 
-select * from final
+select * from real_final
+
+
+
+
+
+
+
