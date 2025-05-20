@@ -1,0 +1,378 @@
+version: 2
+
+models:
+  - name: stg_date
+    description: ""
+    columns:
+      - name: date_id
+        data_type: date
+        description: ""
+
+      - name: year
+        data_type: number
+        description: ""
+
+      - name: quarter
+        data_type: number
+        description: ""
+
+      - name: month
+        data_type: number
+        description: ""
+
+      - name: month_name
+        data_type: varchar
+        description: ""
+
+      - name: day
+        data_type: number
+        description: ""
+
+      - name: week_day
+        data_type: varchar
+        description: ""
+
+  - name: stg_github_tables__countries
+    description: ""
+    columns:
+      - name: country_id
+        data_type: varchar
+        description: ""
+
+      - name: country_name
+        data_type: varchar
+        description: ""
+
+      - name: ioc
+        data_type: varchar
+        description: ""
+
+  - name: stg_github_tables__entry_modes
+    description: ""
+    columns:
+      - name: entry_mode_id
+        data_type: varchar
+        description: ""
+
+      - name: entry_mode
+        data_type: varchar
+        description: ""
+
+      - name: entry_description
+        data_type: varchar
+        description: ""
+
+  - name: stg_github_tables__matches_stats
+    description: ""
+    columns:
+      - name: match_id
+        data_type: varchar
+        description: ""
+
+      - name: tournament_id
+        data_type: varchar
+        description: ""
+
+      - name: date
+        data_type: date
+        description: ""
+
+      - name: match_players
+        data_type: varchar
+        description: ""
+
+      - name: match_number
+        data_type: number
+        description: ""
+
+      - name: winner_id
+        data_type: varchar
+        description: ""
+
+      - name: winner_seed
+        data_type: number
+        description: ""
+
+      - name: winner_entry_id
+        data_type: varchar
+        description: ""
+
+      - name: loser_id
+        data_type: varchar
+        description: ""
+
+      - name: loser_seed
+        data_type: number
+        description: ""
+
+      - name: loser_entry_id
+        data_type: varchar
+        description: ""
+
+      - name: score
+        data_type: varchar
+        description: ""
+
+      - name: set_1
+        data_type: varchar
+        description: ""
+
+      - name: set_2
+        data_type: varchar
+        description: ""
+
+      - name: set_3
+        data_type: varchar
+        description: ""
+
+      - name: set_4
+        data_type: varchar
+        description: ""
+
+      - name: set_5
+        data_type: varchar
+        description: ""
+
+      - name: winner_games_set_1
+        data_type: number
+        description: ""
+
+      - name: loser_games_set_1
+        data_type: number
+        description: ""
+
+      - name: winner_games_set_2
+        data_type: number
+        description: ""
+
+      - name: loser_games_set_2
+        data_type: number
+        description: ""
+
+      - name: winner_games_set_3
+        data_type: number
+        description: ""
+
+      - name: loser_games_set_3
+        data_type: number
+        description: ""
+
+      - name: winner_games_set_4
+        data_type: number
+        description: ""
+
+      - name: loser_games_set_4
+        data_type: number
+        description: ""
+
+      - name: winner_games_set_5
+        data_type: number
+        description: ""
+
+      - name: loser_games_set_5
+        data_type: number
+        description: ""
+
+      - name: retirement
+        data_type: varchar
+        description: ""
+
+      - name: total_winner_games
+        data_type: number
+        description: ""
+
+      - name: total_loser_games
+        data_type: number
+        description: ""
+
+      - name: total_match_games
+        data_type: number
+        description: ""
+
+      - name: minutes
+        data_type: number
+        description: ""
+
+      - name: best_of
+        data_type: number
+        description: ""
+
+      - name: round
+        data_type: varchar
+        description: ""
+
+      - name: winner_ace
+        data_type: number
+        description: ""
+
+      - name: winner_double_faults
+        data_type: number
+        description: ""
+
+      - name: winner_serve_points
+        data_type: number
+        description: ""
+
+      - name: winner_first_serve_in
+        data_type: number
+        description: ""
+
+      - name: winner_first_serve_won
+        data_type: number
+        description: ""
+
+      - name: winner_second_serve_won
+        data_type: number
+        description: ""
+
+      - name: winner_serve_games_won
+        data_type: number
+        description: ""
+
+      - name: winner_break_points_saved
+        data_type: number
+        description: ""
+
+      - name: winner_break_points_faced
+        data_type: number
+        description: ""
+
+      - name: loser_ace
+        data_type: number
+        description: ""
+
+      - name: loser_double_faults
+        data_type: number
+        description: ""
+
+      - name: loser_serve_points
+        data_type: number
+        description: ""
+
+      - name: loser_first_serve_in
+        data_type: number
+        description: ""
+
+      - name: loser_first_serve_won
+        data_type: number
+        description: ""
+
+      - name: loser_second_serve_won
+        data_type: number
+        description: ""
+
+      - name: loser_serve_games_won
+        data_type: number
+        description: ""
+
+      - name: loser_break_points_saved
+        data_type: number
+        description: ""
+
+      - name: loser_break_points_faced
+        data_type: number
+        description: ""
+
+      - name: winner_rank
+        data_type: number
+        description: ""
+
+      - name: winner_rank_points
+        data_type: number
+        description: ""
+
+      - name: loser_rank
+        data_type: number
+        description: ""
+
+      - name: loser_rank_points
+        data_type: number
+        description: ""
+
+  - name: stg_github_tables__players
+    description: ""
+    columns:
+      - name: player_id
+        data_type: varchar
+        description: ""
+
+      - name: player_name
+        data_type: varchar
+        description: ""
+
+      - name: player_hand
+        data_type: varchar
+        description: ""
+
+      - name: player_ioc
+        data_type: varchar
+        description: ""
+
+      - name: player_height
+        data_type: number
+        description: ""
+
+  - name: stg_github_tables__rounds
+    description: ""
+    columns:
+      - name: round_id
+        data_type: varchar
+        description: ""
+
+      - name: round
+        data_type: varchar
+        description: ""
+
+      - name: round_description
+        data_type: varchar
+        description: ""
+
+  - name: stg_github_tables__surfaces
+    description: ""
+    columns:
+      - name: surface_id
+        data_type: varchar
+        description: ""
+
+      - name: surface
+        data_type: varchar
+        description: ""
+
+      - name: surface_speed
+        data_type: varchar
+        description: ""
+
+      - name: bounce_level
+        data_type: varchar
+        description: ""
+
+      - name: indoor_outdoor
+        data_type: varchar
+        description: ""
+
+  - name: stg_github_tables__tournaments
+    description: ""
+    columns:
+      - name: tournament_id
+        data_type: varchar
+        description: ""
+
+      - name: tournament_name
+        data_type: varchar
+        description: ""
+
+      - name: tournament_start_date
+        data_type: date
+        description: ""
+
+      - name: surface_id
+        data_type: varchar
+        description: ""
+
+      - name: tournament_level
+        data_type: varchar
+        description: ""
+
+      - name: draw_size
+        data_type: number
+        description: ""

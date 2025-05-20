@@ -14,13 +14,13 @@ with base as (
         tourney_start_date as date,
         CONCAT(winner_name, '-', loser_name) as match_players,
         match_number,
-        md5(winner_name) as winner_id,
+        {{dbt_utils.generate_surrogate_key(['winner_name', 'winner_id'])}} as winner_id,
         {{replace_nulls(['winner_seed'])}},
         case 
             when winner_entry is null then 'DA'
             else winner_entry
         end as winner_entry,
-        md5(loser_name) as loser_id,
+        {{dbt_utils.generate_surrogate_key(['loser_name', 'loser_id'])}} as loser_id,
         {{replace_nulls(['loser_seed'])}},
         case
             when loser_entry is null then 'DA'
@@ -186,7 +186,9 @@ with base as (
             when set_1 like '%DEF%' or set_2 like '%DEF%' or set_3 like '%DEF%' or set_4 like '%DEF%' or set_5 like '%DEF%' then 'True'
             else 'False'
         end as Retirement,
-        winner_games_set_1+winner_games_set_2+winner_games_set_3+winner_games_set_4+winner_games_set_5+loser_games_set_1+loser_games_set_2+loser_games_set_3+loser_games_set_4+loser_games_set_5 as total_match_points,
+        winner_games_set_1+winner_games_set_2+winner_games_set_3+winner_games_set_4+winner_games_set_5 as total_winner_games,
+        loser_games_set_1+loser_games_set_2+loser_games_set_3+loser_games_set_4+loser_games_set_5 as total_loser_games,
+        winner_games_set_1+winner_games_set_2+winner_games_set_3+winner_games_set_4+winner_games_set_5+loser_games_set_1+loser_games_set_2+loser_games_set_3+loser_games_set_4+loser_games_set_5 as total_match_games,
         minutes,
         best_of,
         round,
