@@ -5,4 +5,4 @@ packages:
   - name: codegen
     package: dbt-labs/codegen
     version: 0.13.1
-sha1_hash: 9c459bb513316be11ab55af0e5113f17444d082e
+sha1_hash: f29cbf74a0b746d9f3fbb48648bc881b3a22ed01
