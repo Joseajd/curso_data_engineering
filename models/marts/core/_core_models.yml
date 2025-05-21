@@ -79,11 +79,7 @@ models:
 
       - name: player_hand
         data_type: varchar
-        description: "Mano con la que juega el jugador. 'R' -> 'Right' y 'L' -> 'Left'." 
-
-      - name: player_height
-        data_type: number
-        description: "Altura en centímetros del jugador."
+        description: "Mano con la que juega el jugador. 'R' -> 'Right' y 'L' -> 'Left'."
 
   - name: dim_rounds
     description: "Dimensión que contiene información de las rondas de un torneo."
@@ -267,112 +263,112 @@ models:
 
       - name: total_winner_games
         data_type: number
-        description: ""
+        description: "Juegos totales ganados por el ganador."
 
       - name: total_loser_games
         data_type: number
-        description: ""
+        description: "Juegos totales ganados por el perdedor."
 
       - name: total_match_games
         data_type: number
-        description: ""
+        description: "Juegos totales del partido."
 
       - name: minutes
         data_type: number
-        description: ""
+        description: "Duración del partido en minutos."
 
       - name: best_of
         data_type: number
-        description: ""
+        description: "Número de sets máximo a jugar en el partido."
 
-      - name: round
+      - name: round_id
         data_type: varchar
-        description: ""
+        description: "Identificador único para la ronda del partido."
 
       - name: winner_ace
         data_type: number
-        description: ""
+        description: "Número de aces conseguidos por el ganador."
 
       - name: winner_double_faults
         data_type: number
-        description: ""
+        description: "Número de dobles faltas cometidas por el ganador."
 
       - name: winner_serve_points
         data_type: number
-        description: ""
+        description: "Número de puntos al servicio del ganador."
 
       - name: winner_first_serve_in
         data_type: number
-        description: ""
+        description: "Número de primeros servicios conseguidos por el ganador."
 
       - name: winner_first_serve_won
         data_type: number
-        description: ""
+        description: "Número de primeros servicios ganados por el ganador."
 
       - name: winner_second_serve_won
         data_type: number
-        description: ""
+        description: "Número de segundos servicios ganados por el ganador."
 
       - name: winner_serve_games_won
         data_type: number
-        description: ""
+        description: "Número de juegos al servicio ganados por el ganador."
 
       - name: winner_break_points_saved
         data_type: number
-        description: ""
+        description: "Número de puntos de rotura salvados por el ganador."
 
       - name: winner_break_points_faced
         data_type: number
-        description: ""
+        description: "Número de puntos de rotura enfrentados por el ganador."
 
       - name: loser_ace
         data_type: number
-        description: ""
+        description: "Número de aces conseguidos por el perdedor."
 
       - name: loser_double_faults
         data_type: number
-        description: ""
+        description: "Número de dobles faltas cometidas por el perdedor."
 
       - name: loser_serve_points
         data_type: number
-        description: ""
+        description: "Número de puntos al servicio del perdedor."
 
       - name: loser_first_serve_in
         data_type: number
-        description: ""
+        description: "Número de primeros servicios conseguidos por el perdedor."
 
       - name: loser_first_serve_won
         data_type: number
-        description: ""
+        description: "Número de primeros servicios ganados por el perdedor."
 
       - name: loser_second_serve_won
         data_type: number
-        description: ""
+        description: "Número de segundos servicios ganados por el perdedor."
 
       - name: loser_serve_games_won
         data_type: number
-        description: ""
+        description: "Número de juegos al servicio ganados por el perdedor."
 
       - name: loser_break_points_saved
         data_type: number
-        description: ""
+        description: "Número de puntos de rotura salvados por el perdedor."
 
       - name: loser_break_points_faced
         data_type: number
-        description: ""
+        description: "Número de puntos de rotura enfrentados por el perdedor."
 
       - name: winner_rank
         data_type: number
-        description: ""
+        description: "Ranking del ganador en el momento del partido."
 
       - name: winner_rank_points
         data_type: number
-        description: ""
+        description: "Número de puntos del ranking del ganador en el momento del partido."
 
       - name: loser_rank
         data_type: number
-        description: ""
+        description: "Ranking del perdedor en el momento del partido."
 
       - name: loser_rank_points
         data_type: number
-        description: ""
+        description: "Número de puntos del ranking del perdedor en el momento del partido."

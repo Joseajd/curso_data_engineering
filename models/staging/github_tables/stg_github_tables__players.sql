@@ -12,8 +12,7 @@ with base as (
         winner_id,
         winner_name,
         winner_hand,
-        winner_ioc,
-        winner_height
+        winner_ioc
     from base
 
     union 
@@ -22,18 +21,18 @@ with base as (
         loser_id,
         loser_name,
         loser_hand,
-        loser_ioc,
-        loser_height
+        loser_ioc
     from base 
 ), players_renamed as (
     select 
-        {{dbt_utils.generate_surrogate_key(['winner_name', 'winner_id'])}} as player_id,
+        distinct {{dbt_utils.generate_surrogate_key(['winner_name', 'winner_id'])}} as player_id,
         winner_name as player_name,
-        winner_hand as player_hand,
-        md5(winner_ioc) as player_ioc_id,
-        winner_height as player_height
+        case
+            when winner_hand = 'R' or winner_hand = 'L' then winner_hand
+            else 'R'
+        end as player_hand,
+        md5(winner_ioc) as player_ioc_id
     from players_union
-    group by player_id, player_name, player_hand, player_ioc_id, player_height
 )
 
 select * from players_renamed

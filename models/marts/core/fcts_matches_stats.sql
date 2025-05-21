@@ -43,7 +43,7 @@ with staging as (
         s.total_match_games,
         s.minutes,
         s.best_of,
-        s.round,
+        md5(s.round) as round_id,
         s.winner_ace,
         s.winner_double_faults,
         s.winner_serve_points,

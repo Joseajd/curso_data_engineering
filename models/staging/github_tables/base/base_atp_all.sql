@@ -61,7 +61,7 @@ cleaned as (
     CAST(loser_rank_points as int) as loser_rank_points
     
     from atp_all
-    where tourney_level in ('M', 'A', 'G', 'F') AND tourney_name not like '%Olympics%' AND tourney_name not like '%Laver%'
+    where tourney_level in ('M', 'A', 'G', 'F') AND tourney_name not like '%Olympics%' AND tourney_name not like '%Laver%' AND winner_name != 'Dustin Brown' AND loser_name != 'Dustin Brown'
 )
 
 select * from cleaned

@@ -6,6 +6,9 @@ models:
     columns:
       - name: date_id
         data_type: date
+        tests: 
+          - unique
+          - not_null
         description: "Identificador único de la fecha. Corresponde a la fecha en formato YYYY-MM-DD."
 
       - name: year
@@ -37,6 +40,9 @@ models:
     columns:
       - name: country_id
         data_type: varchar
+        tests: 
+          - unique
+          - not_null
         description: "Identificador único del país. Generado usando md5."
 
       - name: country_name
@@ -52,6 +58,9 @@ models:
     columns:
       - name: entry_mode_id
         data_type: varchar
+        tests: 
+          - unique
+          - not_null
         description: "Identificador único del modo de entrada al torneo. Generado usando md5."
 
       - name: entry_mode
@@ -67,14 +76,25 @@ models:
     columns:
       - name: match_id
         data_type: varchar
+        tests: 
+          - unique
+          - not_null
         description: "Identificador único para cada partido. Generado usando generate_surrogate_key usando los campos 'winner_name', 'loser_name', 'tourney_start_date', 'tourney_name', 'match_number'."
 
       - name: tournament_id
         data_type: varchar
+        tests:
+              - relationships:
+                  to: ref('stg_github_tables__tournaments')
+                  field: tournament_id
         description: "Identificador único del torneo. Generado usando generate_surrogate_key usando los campos 'Tourney_id' y 'Tourney_start_date'."
 
-      - name: date
+      - name: tournament_start_date
         data_type: date
+        tests:
+              - relationships:
+                  to: ref('stg_date')
+                  field: date_id
         description: "Fecha de comienzo del torneo en formato YYYY-MM-DD."
 
       - name: match_players
@@ -87,6 +107,10 @@ models:
 
       - name: winner_id
         data_type: varchar
+        tests:
+              - relationships:
+                  to: ref('stg_github_tables__players')
+                  field: player_id
         description: "Identificador único del jugador que ganó el partido."
 
       - name: winner_seed
@@ -95,10 +119,18 @@ models:
 
       - name: winner_entry_id
         data_type: varchar
+        tests:
+              - relationships:
+                  to: ref('stg_github_tables__entry_modes')
+                  field: entry_mode_id
         description: "Identificador único de la forma de entrada del jugador ganador."
 
       - name: loser_id
         data_type: varchar
+        tests:
+              - relationships:
+                  to: ref('stg_github_tables__players')
+                  field: player_id
         description: "Identificador único del jugador que perdió el partido."
 
       - name: loser_seed
@@ -107,6 +139,10 @@ models:
 
       - name: loser_entry_id
         data_type: varchar
+        tests:
+              - relationships:
+                  to: ref('stg_github_tables__entry_modes')
+                  field: entry_mode_id
         description: "Identificador único de la forma de entrada del jugador perdedor."
 
       - name: score
@@ -294,6 +330,9 @@ models:
     columns:
       - name: player_id
         data_type: varchar
+        tests: 
+          - unique
+          - not_null
         description: "Identificador único de cada jugador. Generado con generate_surrogate_key usando los campos 'Player_id' y 'Player_name'."
 
       - name: player_name
@@ -308,15 +347,14 @@ models:
         data_type: varchar
         description: "Siglas del país de nacimiento de cada jugador."
 
-      - name: player_height
-        data_type: number
-        description: "Altura en centímetros de cada jugador."
-
   - name: stg_github_tables__rounds
     description: ""
     columns:
       - name: round_id
         data_type: varchar
+        tests: 
+          - unique
+          - not_null
         description: "Identificador único de cada ronda del torneo."
 
       - name: round
@@ -328,10 +366,13 @@ models:
         description: "Descripción de cada ronda del torneo."
 
   - name: stg_github_tables__surfaces
-    description: ""
+    description: "Modelo que contiene información sobre los distintos tipos de superficies."
     columns:
       - name: surface_id
         data_type: varchar
+        tests: 
+          - unique
+          - not_null
         description: "Identificador único de cada tipo de superficie."
 
       - name: surface
@@ -355,6 +396,9 @@ models:
     columns:
       - name: tournament_id
         data_type: varchar
+        tests: 
+          - unique
+          - not_null
         description: "Identificador único de cada torneo. Generado con generate_surrogate_key usando los campos 'Tourney_name' y 'Tourney_start_date'."
 
       - name: tournament_name

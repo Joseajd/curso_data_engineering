@@ -6,61 +6,69 @@
 
 with staging as (
     select *
-    from {{ref('stg_github_tables__matches_stats')}}
+    from {{ref('fcts_matches_stats')}}
 ), winner as (
     select 
-        winner_id as player_id,
+        s.winner_id as player_id,
+        d.player_name as player_name,
+        d.country_name as player_country,
+        d.player_hand as player_hand,
         1 as matches_played,
         1 as matches_won,
         0 as matches_lost,
-        minutes,
-        winner_games_set_1 as set_1_games,
-        winner_games_set_2 as set_2_games,
-        winner_games_set_3 as set_3_games,
-        winner_games_set_4 as set_4_games,
-        winner_games_set_5 as set_5_games,
-        total_winner_games as games_won,
-        winner_ace as aces,
+        s.minutes,
+        s.winner_games_set_1 as set_1_games,
+        s.winner_games_set_2 as set_2_games,
+        s.winner_games_set_3 as set_3_games,
+        s.winner_games_set_4 as set_4_games,
+        s.winner_games_set_5 as set_5_games,
+        s.total_winner_games as games_won,
+        s.winner_ace as aces,
         case   
-            when Retirement = 'True' then 1
+            when s.Retirement = 'True' then 1
             else 0
         end as retirements,
-        winner_double_faults as double_faults,
-        winner_serve_points as serve_points,
-        winner_first_serve_in as first_serve_in,
-        winner_first_serve_won as first_serve_won,
-        winner_second_serve_won as second_serve_won,
-        winner_serve_games_won as serve_games_won,
-        winner_break_points_faced as break_points_faced,
-        winner_break_points_saved as break_points_saved
-    from staging
+        s.winner_double_faults as double_faults,
+        s.winner_serve_points as serve_points,
+        s.winner_first_serve_in as first_serve_in,
+        s.winner_first_serve_won as first_serve_won,
+        s.winner_second_serve_won as second_serve_won,
+        s.winner_serve_games_won as serve_games_won,
+        s.winner_break_points_faced as break_points_faced,
+        s.winner_break_points_saved as break_points_saved
+    from staging s
+    join {{ref('dim_players')}} d on s.winner_id = d.player_id
 ), loser as (
     select 
-        loser_id as player_id,
+        s.loser_id as player_id,
+        d.player_name as player_name,
+        d.country_name as player_country,
+        d.player_hand as player_hand,
         1 as matches_played,
         0 as matches_won,
         1 as matches_lost,
-        minutes,
-        loser_games_set_1 as set_1_games,
-        loser_games_set_2 as set_2_games,
-        loser_games_set_3 as set_3_games,
-        loser_games_set_4 as set_4_games,
-        loser_games_set_5 as set_5_games,
-        total_loser_games as games_won,
-        loser_ace as aces,
+        s.minutes,
+        s.loser_games_set_1 as set_1_games,
+        s.loser_games_set_2 as set_2_games,
+        s.loser_games_set_3 as set_3_games,
+        s.loser_games_set_4 as set_4_games,
+        s.loser_games_set_5 as set_5_games,
+        s.total_loser_games as games_won,
+        s.loser_ace as aces,
         case   
-            when Retirement = 'True' then 1
+            when s.Retirement = 'True' then 1
             else 0
         end as retirements,
-        loser_double_faults as double_faults,
-        loser_serve_points as serve_points,
-        loser_first_serve_in as first_serve_in,
-        loser_first_serve_won as first_serve_won,
-        loser_second_serve_won as second_serve_won,
-        loser_serve_games_won as serve_games_won,
-        loser_break_points_faced as break_points_faced,
-        loser_break_points_saved as break_points_saved
-    from staging
+        s.loser_double_faults as double_faults,
+        s.loser_serve_points as serve_points,
+        s.loser_first_serve_in as first_serve_in,
+        s.loser_first_serve_won as first_serve_won,
+        s.loser_second_serve_won as second_serve_won,
+        s.loser_serve_games_won as serve_games_won,
+        s.loser_break_points_faced as break_points_faced,
+        s.loser_break_points_saved as break_points_saved
+    from staging s
+    join {{ref('dim_players')}} d on s.winner_id = d.player_id
 ), combinada as (
     select * 
     from winner
@@ -70,6 +78,9 @@ with staging as (
 ), final as (
     select 
         player_id,
+        player_name,
+        player_country,
+        player_hand,
         sum(matches_played) as total_matches_played,
         sum(matches_won) as total_matches_won,
         sum(matches_lost) as total_matches_lost,
@@ -92,10 +103,13 @@ with staging as (
         sum(break_points_saved) as total_break_points_saved
 
     from combinada
-    group by player_id
+    group by player_id, player_name, player_country, player_hand
 ), last_stats as (
     select 
         player_id,
+        player_name,
+        player_country,
+        player_hand,
         total_matches_played,
         total_matches_won,
         total_matches_lost,
