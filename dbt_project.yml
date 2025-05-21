@@ -39,3 +39,5 @@ models:
       +database: "{{ env_var('DBT_ENVIRONMENTS') }}_GOLD_DB"
       core:
         +schema: core
+      players:
+        +schema: players
