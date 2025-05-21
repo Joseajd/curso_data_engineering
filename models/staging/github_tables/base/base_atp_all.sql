@@ -20,7 +20,7 @@ cleaned as (
     winner_id,
     CAST(winner_seed as int) as winner_seed,
     UPPER(winner_entry) as winner_entry,
-    winner_name,
+    REPLACE(winner_name, '-', ' ') as winner_name,
     winner_hand,
     CAST(winner_ht as int) as winner_height,
     winner_ioc,
@@ -28,7 +28,7 @@ cleaned as (
     loser_id,
     CAST(loser_seed as int) as loser_seed,
     UPPER(loser_entry) as loser_entry,
-    loser_name,
+    REPLACE(loser_name, '-', ' ') as loser_name,
     loser_hand,
     CAST(loser_ht as int) as loser_height,
     loser_ioc,
@@ -61,7 +61,7 @@ cleaned as (
     CAST(loser_rank_points as int) as loser_rank_points
     
     from atp_all
-    where tourney_level in ('M', 'A', 'G', 'F') AND tourney_name not like '%Olympics%'
+    where tourney_level in ('M', 'A', 'G', 'F') AND tourney_name not like '%Olympics%' AND tourney_name not like '%Laver%' AND winner_name != 'Dustin Brown' AND loser_name != 'Dustin Brown'
 )
 
 select * from cleaned

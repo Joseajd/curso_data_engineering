@@ -31,13 +31,13 @@ models:
     staging:
       +materialized: view
       +database: "{{ env_var('DBT_ENVIRONMENTS') }}_SILVER_DB"
-      google_sheets:
-        +schema: google_sheets
-      sql_server_dbo:
-        +schema: sql_server_dbo
+      github_tables:
+      +schema: github_tables
       
     marts:
       +materialized: table
       +database: "{{ env_var('DBT_ENVIRONMENTS') }}_GOLD_DB"
       core:
         +schema: core
+      players:
+        +schema: players

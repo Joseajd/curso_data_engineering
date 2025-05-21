@@ -1,0 +1,140 @@
+version: 2
+
+models:
+      - name: ATP_2000
+        description: "Tabla de resultados de partidos de torneos ATP del año 2000 al 2023."
+        columns:
+          - name: TOURNEY_ID
+            description: "Identificador único del torneo."
+          - name: TOURNEY_NAME
+            tests: 
+              - not_null
+            description: "Nombre del torneo."
+          - name: SURFACE
+            tests: 
+              - not_null
+            description: "Superficie del torneo (clay, hard, grass, etc.)."
+          - name: DRAW_SIZE
+            description: "Tamaño del cuadro del torneo."
+          - name: TOURNEY_LEVEL
+            description: "Nivel del torneo (ATP, Grand Slam, etc.)."
+          - name: TOURNEY_DATE
+            tests: 
+              - not_null
+            description: "Fecha de inicio del torneo (formato YYYYMMDD)."
+          - name: MATCH_NUM
+            tests: 
+              - not_null
+            description: "Número de partido dentro del torneo."
+          - name: WINNER_ID
+            tests: 
+              - not_null
+            description: "Identificador del jugador ganador."
+          - name: WINNER_SEED
+            description: "Cabeza de serie del jugador ganador."
+          - name: WINNER_ENTRY
+            tests: 
+              - not_null
+            description: "Tipo de entrada al torneo del ganador (WC, Q, etc.)."
+          - name: WINNER_NAME
+            tests: 
+              - not_null
+            description: "Nombre completo del jugador ganador."
+          - name: WINNER_HAND
+            description: "Mano dominante del ganador (R o L)."
+          - name: WINNER_HT
+            description: "Altura del jugador ganador."
+          - name: WINNER_IOC
+            tests: 
+              - not_null
+            description: "Código de país del jugador ganador."
+          - name: WINNER_AGE
+            description: "Edad del jugador ganador."
+          - name: LOSER_ID
+            tests: 
+              - not_null
+            description: "Identificador del jugador perdedor."
+          - name: LOSER_SEED
+            description: "Cabeza de serie del jugador perdedor."
+          - name: LOSER_ENTRY
+            tests: 
+              - not_null
+            description: "Tipo de entrada al torneo del perdedor."
+          - name: LOSER_NAME
+            tests: 
+              - not_null
+            description: "Nombre completo del jugador perdedor."
+          - name: LOSER_HAND
+            description: "Mano dominante del perdedor."
+          - name: LOSER_HT
+            description: "Altura del jugador perdedor."
+          - name: LOSER_IOC
+            tests: 
+              - not_null
+            description: "Código de país del jugador perdedor."
+          - name: LOSER_AGE
+            description: "Edad del jugador perdedor."
+          - name: SCORE
+            tests: 
+              - not_null
+            description: "Resultado del partido."
+          - name: BEST_OF
+            description: "Número máximo de sets en el partido."
+          - name: ROUND
+            tests: 
+              - not_null
+            description: "Ronda del torneo (1R, QF, SF, etc.)."
+          - name: MINUTES
+            description: "Duración del partido en minutos."
+          - name: W_ACE
+            description: "Aces realizados por el ganador."
+          - name: W_DF
+            description: "Dobles faltas cometidas por el ganador."
+          - name: W_SVPT
+            description: "Puntos de saque del ganador."
+          - name: W_1STIN
+            description: "Primeros saques acertados por el ganador."
+          - name: W_1STWON
+            description: "Primeros saques ganados por el ganador."
+          - name: W_2NDWON
+            description: "Segundos saques ganados por el ganador."
+          - name: W_SVGMS
+            description: "Juegos al saque ganados por el ganador."
+          - name: W_BPSAVED
+            description: "Puntos de break salvados por el ganador."
+          - name: W_BPFACED
+            description: "Puntos de break enfrentados por el ganador."
+          - name: L_ACE
+            description: "Aces realizados por el perdedor."
+          - name: L_DF
+            description: "Dobles faltas cometidas por el perdedor."
+          - name: L_SVPT
+            description: "Puntos de saque del perdedor."
+          - name: L_1STIN
+            description: "Primeros saques acertados por el perdedor."
+          - name: L_1STWON
+            description: "Primeros saques ganados por el perdedor."
+          - name: L_2NDWON
+            description: "Segundos saques ganados por el perdedor."
+          - name: L_SVGMS
+            description: "Juegos al saque ganados por el perdedor."
+          - name: L_BPSAVED
+            description: "Puntos de break salvados por el perdedor."
+          - name: L_BPFACED
+            description: "Puntos de break enfrentados por el perdedor."
+          - name: WINNER_RANK
+            description: "Ranking ATP del ganador en ese momento."
+          - name: WINNER_RANK_POINTS
+            description: "Puntos del ranking ATP del ganador."
+          - name: LOSER_RANK
+            description: "Ranking ATP del perdedor en ese momento."
+          - name: LOSER_RANK_POINTS
+            description: "Puntos del ranking ATP del perdedor."
+      
+      - name: countries
+        description: "Siglas y países"
+        columns:
+          - name: Siglas
+            description: "Siglas del país"
+          - name: Pais
+            description: "Nombre del país"
