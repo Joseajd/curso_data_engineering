@@ -317,62 +317,62 @@ models:
     columns:
       - name: round_id
         data_type: varchar
-        description: ""
+        description: "Identificador único de cada ronda del torneo."
 
       - name: round
         data_type: varchar
-        description: ""
+        description: "Siglas de cada ronda del torneo."
 
       - name: round_description
         data_type: varchar
-        description: ""
+        description: "Descripción de cada ronda del torneo."
 
   - name: stg_github_tables__surfaces
     description: ""
     columns:
       - name: surface_id
         data_type: varchar
-        description: ""
+        description: "Identificador único de cada tipo de superficie."
 
       - name: surface
         data_type: varchar
-        description: ""
+        description: "Nombre de los distintos tipos de superficie."
 
       - name: surface_speed
         data_type: varchar
-        description: ""
+        description: "Medida de la velocidad de juego en la superficie. Toma valores 'Fast', 'Medium' y 'Slow'."
 
       - name: bounce_level
         data_type: varchar
-        description: ""
+        description: "Medida de la altura de bote en cada superficie. Toma valores 'High', 'Medium' y 'Low'."
 
       - name: indoor_outdoor
         data_type: varchar
-        description: ""
+        description: "Descripción de si la superficie es más jugada en pista cubierta (indoor) o descubierta (outdoor)."
 
   - name: stg_github_tables__tournaments
     description: ""
     columns:
       - name: tournament_id
         data_type: varchar
-        description: ""
+        description: "Identificador único de cada torneo. Generado con generate_surrogate_key usando los campos 'Tourney_name' y 'Tourney_start_date'."
 
       - name: tournament_name
         data_type: varchar
-        description: ""
+        description: "Nombre del torneo."
 
       - name: tournament_start_date
         data_type: date
-        description: ""
+        description: "Fecha de inicio del torneo."
 
       - name: surface_id
         data_type: varchar
-        description: ""
+        description: "Identificador único de cada superficie."
 
       - name: tournament_level
         data_type: varchar
-        description: ""
+        description: "Nivel de torneo. Toma los valores 'G (Grand Slam)', 'M (Masters)', 'A (ATP250 O ATP500)' o 'C (Challenger)."
 
       - name: draw_size
         data_type: number
-        description: ""
+        description: "Número de jugadores que participan en las fases finales del torneo."

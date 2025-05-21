@@ -27,13 +27,13 @@ with base as (
     from base 
 ), players_renamed as (
     select 
-        {{dbt_utils.generate_surrogate_key(['winner_name', 'winner_hand', 'winner_ioc'])}} as player_id,
+        {{dbt_utils.generate_surrogate_key(['winner_name', 'winner_id'])}} as player_id,
         winner_name as player_name,
         winner_hand as player_hand,
-        winner_ioc as player_ioc,
+        md5(winner_ioc) as player_ioc_id,
         winner_height as player_height
     from players_union
-    group by player_id, player_name, player_hand, player_ioc, player_height
+    group by player_id, player_name, player_hand, player_ioc_id, player_height
 )
 
 select * from players_renamed
