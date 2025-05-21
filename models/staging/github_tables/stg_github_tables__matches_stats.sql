@@ -11,7 +11,7 @@ with base as (
     select 
         {{ dbt_utils.generate_surrogate_key(['winner_name', 'loser_name', 'tourney_start_date', 'tourney_name', 'match_number'])}} as match_id,
         {{ dbt_utils.generate_surrogate_key(['tourney_name', 'tourney_start_date'])}} as tournament_id,
-        tourney_start_date as date,
+        tourney_start_date as tournament_start_date,
         CONCAT(winner_name, '-', loser_name) as match_players,
         match_number,
         {{dbt_utils.generate_surrogate_key(['winner_name', 'winner_id'])}} as winner_id,
@@ -63,7 +63,7 @@ with base as (
     select 
         match_id,
         tournament_id,
-        date,
+        tournament_start_date,
         match_players,
         match_number,
         winner_id,
@@ -105,7 +105,7 @@ with base as (
     select 
         match_id,
         tournament_id,
-        date,
+        tournament_start_date,
         match_players,
         match_number,
         winner_id,

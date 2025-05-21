@@ -45,7 +45,7 @@ models:
 
       - name: ioc
         data_type: varchar
-        description: "Siglas del país en inglés, por ejemplo, ESP -> Spain"
+        description: "Siglas del comité olímpico del jugador en inglés, por ejemplo, ESP -> Spain"
 
   - name: stg_github_tables__entry_modes
     description: ""

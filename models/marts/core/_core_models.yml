@@ -1,0 +1,378 @@
+version: 2
+
+models:
+  - name: dim_countries
+    description: "Dimensión que contiene información de países."
+    columns:
+      - name: country_id
+        data_type: varchar
+        description: "Identificador único para cada país."
+
+      - name: country_name
+        data_type: varchar
+        description: "Nombre del país en inglés."
+
+      - name: ioc
+        data_type: varchar
+        description: "Siglas del comité olímpico internacional de cada jugador. Representan a un país, ejemplo, ESP -> Spain."
+
+  - name: dim_date
+    description: "Dimensión que contiene datos de fecha, día por día, desde el 2000-01-01 al 2024-12-31."
+    columns:
+      - name: date_id
+        data_type: date
+        description: "Identificador único de la fecha. Tiene el valor de fecha en formato YYYY-MM-DD."
+
+      - name: year
+        data_type: number
+        description: "Año correspondiente a la fecha."
+
+      - name: quarter
+        data_type: number
+        description: "Trimestre correspondiente a la fecha. Toma valores del 1 al 4."
+
+      - name: month
+        data_type: number
+        description: "Mes correspondiente a la fecha. Toma valores del 1 al 12."
+
+      - name: month_name
+        data_type: varchar
+        description: "Primeras tres letras del nombre del mes en inglés. Ejemplo, 'Jan' -> 'January'."
+
+      - name: day
+        data_type: number
+        description: "Día del mes correspondiente a la fecha."
+
+      - name: week_day
+        data_type: varchar
+        description: "Primeras tres letras del nombre del día de la semana en inglés. Ejemplo, 'Mon' -> 'Monday'."
+
+  - name: dim_entry_modes
+    description: "Dimensión que contiene información de los modos de entrada al torneo."
+    columns:
+      - name: entry_mode_id
+        data_type: varchar
+        description: "Identificador único del modo de entrada al torneo."
+
+      - name: entry_mode
+        data_type: varchar
+        description: "Siglas del modo de entrada al torneo. Ejemplo, 'DA' -> 'Direct Access'."
+
+      - name: entry_description
+        data_type: varchar
+        description: "Descripción del modo de entrada al torneo. Es lo que sigfican las siglas de entry_mode."
+
+  - name: dim_players
+    description: "Dimensión que contiene información de todos los jugadores."
+    columns:
+      - name: player_id
+        data_type: varchar
+        description: "Identificador único del jugador."
+
+      - name: player_name
+        data_type: varchar
+        description: "Nombre y primer apellido del jugador."
+
+      - name: country_name
+        data_type: varchar
+        description: "Nombre del país al que pertenece el jugador segun el International Olympic Committee."
+
+      - name: player_hand
+        data_type: varchar
+        description: "Mano con la que juega el jugador. 'R' -> 'Right' y 'L' -> 'Left'." 
+
+      - name: player_height
+        data_type: number
+        description: "Altura en centímetros del jugador."
+
+  - name: dim_rounds
+    description: "Dimensión que contiene información de las rondas de un torneo."
+    columns:
+      - name: round_id
+        data_type: varchar
+        description: "Identificador único de cada ronda."
+
+      - name: round
+        data_type: varchar
+        description: "Siglas de cada ronda."
+
+      - name: round_description
+        data_type: varchar
+        description: "Descripción de cada ronda. Es el significado de round. Ejemplo, 'RR' -> 'Robin Round'."
+
+  - name: dim_surfaces
+    description: "Dimensión que contiene información de las distintas superficies."
+    columns:
+      - name: surface_id
+        data_type: varchar
+        description: "Identificador único de cada superficie."
+
+      - name: surface
+        data_type: varchar
+        description: "Nombre de cada superficie."
+
+      - name: surface_speed
+        data_type: varchar
+        description: "Velocidad de juego de cada superficie. Toma valores. 'Fast', 'Medium' o 'Slow'."
+
+      - name: bounce_level
+        data_type: varchar
+        description: "Nivel de bote de la bola en cada pista. Toma valores 'High', 'Medium' o 'Low'."
+
+      - name: indoor_outdoor
+        data_type: varchar
+        description: "Describe si la superficie suele jugarse en abierto o cerrado."
+
+  - name: dim_tournaments
+    description: "Dimensión que contiene información de cada torneo."
+    columns:
+      - name: tournament_id
+        data_type: varchar
+        description: "Identificador único para cada torneo. Un mismo torneo en distinto año se consideran dos torneos distintos."
+
+      - name: tournament_name
+        data_type: varchar
+        description: "Nombre del torneo."
+
+      - name: tournament_level
+        data_type: varchar
+        description: "Nivel del torneo, puede tomar valores 'A', 'G', 'M', 'F'."
+
+      - name: tournament_level_description
+        data_type: varchar
+        description: "Descripción del nivel del torneo. Toma valores 'ATP 250 - ATP 500', 'Grand Slam', 'Masters' o 'Finals'."
+
+      - name: draw_size
+        data_type: number
+        description: "Tamaño del cuadro en las fases finales del torneo."
+
+  - name: fcts_matches_stats
+    description: "Tabla de hechos que contiene las estadísticas por partido desde el año 2000 hasta el 2024."
+    columns:
+      - name: match_id
+        data_type: varchar
+        description: "Identificador único de cada partido."
+
+      - name: tournament_id
+        data_type: varchar
+        description: "Identificador único para cada torneo. Un mismo torneo en distinto año se consideran dos torneos distintos."
+
+      - name: surface_id
+        data_type: varchar
+        description: "Identificador único para cada superficie."
+
+      - name: tournament_start_date
+        data_type: date
+        description: "Fecha de comienzo del torneo."
+
+      - name: match_players
+        data_type: varchar
+        description: "Jugadores del partido. Aparecen de la forma 'winner'-'loser'."
+
+      - name: match_number
+        data_type: number
+        description: "Número del partido dentro de un torneo."
+
+      - name: winner_id
+        data_type: varchar
+        description: "Identificador único del ganador."
+
+      - name: winner_seed
+        data_type: number
+        description: "Indica si el ganador fue cabeza de serie. Si no lo fue, aparece como 0."
+
+      - name: winner_entry_id
+        data_type: varchar
+        description: "Identificador único para el modo de entrada al torneo."
+
+      - name: loser_id
+        data_type: varchar
+        description: "Identificador único del perdedor."
+
+      - name: loser_seed
+        data_type: number
+        description: "Indica si el perdedor fue cabeza de serie. Si no lo fue, aparece como 0."
+
+      - name: loser_entry_id
+        data_type: varchar
+        description: "Identificador único para el modo de entrada al torneo."
+
+      - name: score
+        data_type: varchar
+        description: "Resultado final del partido."
+
+      - name: set_1
+        data_type: varchar
+        description: "Resultado final del primer set."
+
+      - name: set_2
+        data_type: varchar
+        description: "Resultado final del segundo set."
+
+      - name: set_3
+        data_type: varchar
+        description: "Resultado final del tercer set."
+
+      - name: set_4
+        data_type: varchar
+        description: "Resultado final del cuarto set."
+
+      - name: set_5
+        data_type: varchar
+        description: "Resultado final del quinto set."
+
+      - name: winner_games_set_1
+        data_type: number
+        description: "Juegos ganados por el ganador en el primer set."
+
+      - name: loser_games_set_1
+        data_type: number
+        description: "Juegos ganados por el perdedor en el primer set."
+
+      - name: winner_games_set_2
+        data_type: number
+        description: "Juegos ganados por el ganador en el segundo set."
+
+      - name: loser_games_set_2
+        data_type: number
+        description: "Juegos ganados por el perdedor en el segundo set."
+
+      - name: winner_games_set_3
+        data_type: number
+        description: "Juegos ganados por el ganador en el tercer set."
+
+      - name: loser_games_set_3
+        data_type: number
+        description: "Juegos ganados por el perdedor en el tercer set."
+
+      - name: winner_games_set_4
+        data_type: number
+        description: "Juegos ganados por el ganador en el cuarto set."
+
+      - name: loser_games_set_4
+        data_type: number
+        description: "Juegos ganados por el perdedor en el cuarto set."
+
+      - name: winner_games_set_5
+        data_type: number
+        description: "Juegos ganados por el ganador en el quinto set."
+
+      - name: loser_games_set_5
+        data_type: number
+        description: "Juegos ganados por el perdedor en el quinto set."
+
+      - name: retirement
+        data_type: varchar
+        description: "Indica con 'True' si hubo retiro por parte de algún jugador, y 'False' si no lo hubo."
+
+      - name: total_winner_games
+        data_type: number
+        description: ""
+
+      - name: total_loser_games
+        data_type: number
+        description: ""
+
+      - name: total_match_games
+        data_type: number
+        description: ""
+
+      - name: minutes
+        data_type: number
+        description: ""
+
+      - name: best_of
+        data_type: number
+        description: ""
+
+      - name: round
+        data_type: varchar
+        description: ""
+
+      - name: winner_ace
+        data_type: number
+        description: ""
+
+      - name: winner_double_faults
+        data_type: number
+        description: ""
+
+      - name: winner_serve_points
+        data_type: number
+        description: ""
+
+      - name: winner_first_serve_in
+        data_type: number
+        description: ""
+
+      - name: winner_first_serve_won
+        data_type: number
+        description: ""
+
+      - name: winner_second_serve_won
+        data_type: number
+        description: ""
+
+      - name: winner_serve_games_won
+        data_type: number
+        description: ""
+
+      - name: winner_break_points_saved
+        data_type: number
+        description: ""
+
+      - name: winner_break_points_faced
+        data_type: number
+        description: ""
+
+      - name: loser_ace
+        data_type: number
+        description: ""
+
+      - name: loser_double_faults
+        data_type: number
+        description: ""
+
+      - name: loser_serve_points
+        data_type: number
+        description: ""
+
+      - name: loser_first_serve_in
+        data_type: number
+        description: ""
+
+      - name: loser_first_serve_won
+        data_type: number
+        description: ""
+
+      - name: loser_second_serve_won
+        data_type: number
+        description: ""
+
+      - name: loser_serve_games_won
+        data_type: number
+        description: ""
+
+      - name: loser_break_points_saved
+        data_type: number
+        description: ""
+
+      - name: loser_break_points_faced
+        data_type: number
+        description: ""
+
+      - name: winner_rank
+        data_type: number
+        description: ""
+
+      - name: winner_rank_points
+        data_type: number
+        description: ""
+
+      - name: loser_rank
+        data_type: number
+        description: ""
+
+      - name: loser_rank_points
+        data_type: number
+        description: ""
