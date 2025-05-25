@@ -105,7 +105,7 @@ with staging as (
        trunc((f.total_matches_won/f.total_matches_played)*100, 2) as pct_wins,
         trunc((f.total_matches_lost/f.total_matches_played)*100, 2) as pct_looses,
         f.total_minutes,
-        (f.total_minutes/f.total_matches_played) as avg_mins_per_match,
+        trunc((f.total_minutes/f.total_matches_played), 2) as avg_mins_per_match,
         f.total_retirements,
         f.total_set_1_games,
         f.total_set_2_games,
