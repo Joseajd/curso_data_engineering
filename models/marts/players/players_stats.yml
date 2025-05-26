@@ -1,0 +1,141 @@
+version: 2
+
+models:
+  - name: players_stats
+    description: ""
+    columns:
+      - name: player_id
+        data_type: varchar
+        description: ""
+
+      - name: player_name
+        data_type: varchar
+        description: ""
+
+      - name: player_country
+        data_type: varchar
+        description: ""
+
+      - name: player_hand
+        data_type: varchar
+        description: ""
+
+      - name: total_matches_played
+        data_type: number
+        description: "Total de partidos jugados."
+
+      - name: total_matches_won
+        data_type: number
+        description: "Total de partidos ganados."
+
+      - name: total_matches_lost
+        data_type: number
+        description: "Total de partidos perdidos."
+
+      - name: pct_wins
+        tests:
+        - dbt_expectations.expect_column_values_to_be_between:
+            min_value: 0
+            max_value: 100
+        data_type: number
+        description: "Porcentaje de victorias."
+
+      - name: pct_looses
+        tests:
+        - dbt_expectations.expect_column_values_to_be_between:
+            min_value: 0
+            max_value: 100
+        data_type: number
+        description: "Porcentaje de derrotas."
+
+      - name: total_minutes
+        data_type: number
+        description: ""
+
+      - name: avg_mins_per_match
+        data_type: number
+        description: ""
+
+      - name: total_retirements
+        data_type: number
+        description: ""
+
+      - name: total_set_1_games
+        data_type: number
+        description: ""
+
+      - name: total_set_2_games
+        data_type: number
+        description: ""
+
+      - name: total_set_3_games
+        data_type: number
+        description: ""
+
+      - name: total_set_4_games
+        data_type: number
+        description: ""
+
+      - name: total_set_5_games
+        data_type: number
+        description: ""
+
+      - name: total_games_won
+        data_type: number
+        description: ""
+
+      - name: total_aces
+        data_type: number
+        description: ""
+
+      - name: total_double_faults
+        data_type: number
+        description: ""
+
+      - name: total_serve_points
+        data_type: number
+        description: ""
+
+      - name: total_first_serve_won
+        data_type: number
+        description: ""
+
+      - name: total_first_serve_in
+        data_type: number
+        description: ""
+
+      - name: ratio_first_serve
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              max_value: 100
+        data_type: number
+        description: ""
+
+      - name: total_second_serve_won
+        data_type: number
+        description: ""
+
+      - name: total_serve_games_won
+        data_type: number
+        description: ""
+
+      - name: ratio_serve_games
+        data_type: number
+        description: ""
+
+      - name: total_break_points_faced
+        data_type: number
+        description: ""
+
+      - name: total_break_points_saved
+        data_type: number
+        description: ""
+
+      - name: pct_tbps_tbpf
+        tests:
+        - dbt_expectations.expect_column_values_to_be_between:
+            min_value: 0
+            max_value: 100
+        data_type: number
+        description: ""
